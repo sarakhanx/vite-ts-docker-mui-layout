@@ -30,7 +30,7 @@ const SideNav = () => {
         >
             <Box sx={styles.avatarContainer}>
                 <Avatar sx={styles.avatar} alt="Masoud" src="/assets/samit.jpg" />
-                {!collapsed ? <Typography variant="body2" sx={styles.yourChannel}>Samit Koyom</Typography> : null }
+                {!collapsed ? <Typography variant="body2" sx={styles.yourChannel}>Sarawut Khantiyoo</Typography> : null }
                 {!collapsed ? <Typography variant="body2">Administrator</Typography> : null }
             </Box>
 

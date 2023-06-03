@@ -10,15 +10,19 @@ import Product from "./pages/Product"
 import Report from "./pages/Report"
 import Setting from "./pages/Setting"
 import { DASHBOARD_PATH, PRODUCT_PATH, REPORT_PATH, SETTING_PATH  } from './config/constants'
+import ProtectRoute from "./routers/ProtectRoute"
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AuthLayout />}>
+      <Route element={<AuthLayout />}>
           <Route path="/" element={<Login />} />
         </Route>
-        <Route element={<BackendLayout />}>
+        
+        <Route element={<ProtectRoute><BackendLayout /></ProtectRoute> }>
           <Route path={DASHBOARD_PATH} element={<Dashboard />} />
           <Route path={PRODUCT_PATH} element={<Product />} />
           <Route path={REPORT_PATH} element={<Report />} />

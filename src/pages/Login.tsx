@@ -1,16 +1,42 @@
-
+import api from "../services/authUserApi"
 import { Grid, TextField, Button, Box, Container, Typography, Checkbox, FormControlLabel, Link } from "@mui/material"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
+
+  const navigate = useNavigate()
 
   // useForm hook
   const { register, handleSubmit, formState: { errors } } = useForm()
 
+  
   // onSubmit function
   const onSubmit = (data: any) => {
-    console.log(data)
+      // Call API
+    // Payload
+    const authData = {
+      "identifier": data.username,
+      "password": data.password
+    }
+
+    api.authLogin(authData).then((response: any) => {
+      if(response.status === 200){
+        console.log('login successfully')
+        localStorage.setItem('token',response.data.jwt)
+        navigate('/backend/dashboard')
+      }else if (response.status === 400){
+        console.log('not found user')
+      }else{
+        console.log("unknow problem occured in server side please open ticket")
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
   }
+
+
+
 
   return (
     <>
